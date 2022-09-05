@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: core/service-test-runner/icedfrisby-shields.js</title>
+    <title>JSDoc: Source: services/dynamic-common.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: core/service-test-runner/icedfrisby-shields.js</h1>
+    <h1 class="page-title">Source: services/dynamic-common.js</h1>
 
     
 
@@ -27,109 +27,105 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
+ * Common functions and utilities for tasks related to dynamic badges.
+ *
  * @module
  */
 
 import Joi from 'joi'
-import { expect } from 'chai'
+import toArray from '../core/base-service/to-array.js'
+import validate from '../core/base-service/validate.js'
+import { InvalidResponse } from './index.js'
 
 /**
- * Factory which wraps an "icedfrisby-nock" with some additional functionality:
- * - check if a request was intercepted
- * - set expectations on the badge JSON response
+ * Map of error codes and their corresponding error messages.
  *
- * @param {Function} superclass class to extend
- * @see https://github.com/paulmelnikow/icedfrisby-nock/blob/master/icedfrisby-nock.js
- * @returns {Function} wrapped class
+ * @type {object}
  */
-const factory = superclass =>
-  class IcedFrisbyNock extends superclass {
-    constructor(message) {
-      super(message)
-      this.intercepted = false
-      super.networkOn()
-    }
+const errorMessages = {
+  404: 'resource not found',
+}
 
-    get(uri, options = { followRedirect: false }) {
-      if (!options.followRedirect) {
-        options.followRedirect = false
-      }
-      super.get(uri, options)
-      return this
-    }
+/**
+ * Joi schema for validating individual value.
+ * Checks if the individual value is of type string or number.
+ *
+ * @type {object}
+ */
+const individualValueSchema = Joi.alternatives()
+  .try(Joi.string(), Joi.number())
+  .required()
 
-    intercept(setup) {
-      super.intercept(setup)
-      super.networkOff()
-      this.intercepted = true
-      return this
-    }
+/**
+ * Joi schema for validating compound value.
+ * Checks if the compound value is of type individualValueSchema, array of individualValueSchema or empty array.
+ *
+ * @type {object}
+ */
+const compoundValueSchema = Joi.alternatives().try(
+  individualValueSchema,
+  Joi.array().items(individualValueSchema).required(),
+  Joi.array().length(0)
+)
 
-    networkOff() {
-      super.networkOff()
-      this.intercepted = true
-      return this
-    }
+/**
+ * Look up the value in the data object by key and validate the value against compoundValueSchema.
+ *
+ * @param {object} attrs Refer to individual attributes
+ * @param {object} attrs.data Object containing the data for validation
+ * @param {string} attrs.key Key to retrieve the data from object for validation
+ * @throws {InvalidResponse|Error} Error if Joi validation fails due to invalid or no schema
+ * @returns {object} Value if Joi validation is success
+ */
+function transformAndValidate({ data, key }) {
+  return validate(
+    {
+      ErrorClass: InvalidResponse,
+      prettyErrorMessage: 'invalid key value',
+      traceErrorMessage: 'Key value not valid for dynamic badge',
+      traceSuccessMessage: 'Key value after validation',
+    },
+    data[key],
+    compoundValueSchema
+  )
+}
 
-    networkOn() {
-      super.networkOn()
-      this.intercepted = true
-      return this
-    }
-
-    expectBadge(badge) {
-      const expectedKeys = [
-        'label',
-        'message',
-        'logoWidth',
-        'labelColor',
-        'color',
-        'link',
-      ]
-
-      for (const key of Object.keys(badge)) {
-        if (!expectedKeys.includes(key)) {
-          throw new Error(`Found unexpected object key '${key}'`)
-        }
-      }
-
-      return this.afterJSON(json => {
-        this.constructor._expectField(json, 'label', badge.label)
-        this.constructor._expectField(json, 'message', badge.message)
-        this.constructor._expectField(json, 'logoWidth', badge.logoWidth)
-        this.constructor._expectField(json, 'labelColor', badge.labelColor)
-        this.constructor._expectField(json, 'color', badge.color)
-        this.constructor._expectField(json, 'link', badge.link)
-      })
-    }
-
-    expectRedirect(location) {
-      return this.expectStatus(301).expectHeader('Location', location)
-    }
-
-    static _expectField(json, name, expected) {
-      if (typeof expected === 'undefined') return
-      if (typeof expected === 'string' || typeof expected === 'number') {
-        expect(json[name], `${name} mismatch`).to.equal(expected)
-      } else if (Array.isArray(expected)) {
-        expect(json[name], `${name} mismatch`).to.deep.equal(expected)
-      } else if (Joi.isSchema(expected)) {
-        Joi.attempt(json[name], expected, `${name} mismatch:`)
-      } else if (expected instanceof RegExp) {
-        Joi.attempt(
-          json[name],
-          Joi.string().regex(expected),
-          `${name} mismatch:`
-        )
-      } else {
-        throw new Error(
-          "'expected' must be a string, a number, a regex, an array or a Joi schema"
-        )
-      }
-    }
+/**
+ * Handles rendering concerns of dynamic badges.
+ * Determines the label of the badge according to the tag and defaultLabel.
+ * Determines the message of the badge according to the prefix, suffix and value.
+ * Sets the color of the badge to blue.
+ *
+ * @param {object} attrs Refer to individual attributes
+ * @param {string} attrs.defaultLabel default badge label
+ * @param {string} [attrs.tag] If provided then this value will be appended to the badge label, e.g. `foobar@v1.23`
+ * @param {any} attrs.value Value or array of value to be used for the badge message
+ * @param {string} [attrs.prefix] If provided then the badge message will use this value as a prefix
+ * @param {string} [attrs.suffix] If provided then the badge message will use this value as a suffix
+ * @returns {object} Badge with label, message and color properties
+ */
+function renderDynamicBadge({
+  defaultLabel,
+  tag,
+  value,
+  prefix = '',
+  suffix = '',
+}) {
+  const renderedValue =
+    value === undefined ? 'not specified' : toArray(value).join(', ')
+  return {
+    label: tag ? `${defaultLabel}@${tag}` : defaultLabel,
+    message: `${prefix}${renderedValue}${suffix}`,
+    color: 'blue',
   }
+}
 
-export default factory
+export {
+  errorMessages,
+  individualValueSchema,
+  transformAndValidate,
+  renderDynamicBadge,
+}
 </code></pre>
         </article>
     </section>

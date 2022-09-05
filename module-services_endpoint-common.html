@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: BaseSvgScrapingService</title>
+    <title>JSDoc: Module: services/endpoint-common</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: BaseSvgScrapingService</h1>
+    <h1 class="page-title">Module: services/endpoint-common</h1>
 
     
 
@@ -28,11 +28,8 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature">(abstract) </span></span>
-            <span class="ancestors"><a href="module-core_base-service_base-svg-scraping.html">core/base-service/base-svg-scraping</a>~</span>BaseSvgScrapingService<span class="signature">()</span><span class="type-signature"></span></h2>
         
-            <div class="class-description"><p>Services which scrape data from another SVG badge
-should extend BaseSvgScrapingService</p></div>
+            
         
     
 </header>
@@ -41,16 +38,11 @@ should extend BaseSvgScrapingService</p></div>
     <div class="container-overview">
     
         
+            <div class="description"><p>Common functions and utilities for tasks related to endpoint badges.</p></div>
+        
 
-    
-    <h2>Constructor</h2>
-    
-
-    
-    <h4 class="name" id="BaseSvgScrapingService"><span class="type-signature">(abstract) </span>new BaseSvgScrapingService<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
+        
+            
 
 
 
@@ -95,7 +87,7 @@ should extend BaseSvgScrapingService</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_base-service_base-svg-scraping.js.html">core/base-service/base-svg-scraping.js</a>, <a href="core_base-service_base-svg-scraping.js.html#line20">line 20</a>
+        <a href="services_endpoint-common.js.html">services/endpoint-common.js</a>, <a href="services_endpoint-common.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -125,6 +117,7 @@ should extend BaseSvgScrapingService</p></div>
 
 
 
+        
     
     </div>
 
@@ -141,138 +134,30 @@ should extend BaseSvgScrapingService</p></div>
     
 
     
-
-    
-        <h3 class="subsection-title">Methods</h3>
+        <h3 class="subsection-title">Members</h3>
 
         
             
+<h4 class="name" id="~endpointSchema"><span class="type-signature">(inner, constant) </span>endpointSchema<span class="type-signature"> :object</span></h4>
 
-    
-
-    
-    <h4 class="name" id=".valueFromSvgBadge"><span class="type-signature">(static) </span>valueFromSvgBadge<span class="signature">(svg, valueMatcher<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {string}</span></h4>
-    
-
-    
 
 
 
 <div class="description">
-    <p>Extract a value from SVG</p>
+    <p>Joi schema for validating endpoint.</p>
 </div>
 
 
 
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
+    <h5>Type:</h5>
+    <ul>
+        <li>
             
-                <td class="name"><code>svg</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
+<span class="param-type">object</span>
 
 
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>SVG to parse</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>valueMatcher</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">RegExp</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    defaultValueMatcher
-                
-                </td>
-            
-
-            <td class="description last"><p>RegExp to match the value we want to parse from the SVG</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
+        </li>
+    </ul>
 
 
 
@@ -307,7 +192,7 @@ should extend BaseSvgScrapingService</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_base-service_base-svg-scraping.js.html">core/base-service/base-svg-scraping.js</a>, <a href="core_base-service_base-svg-scraping.js.html#line29">line 29</a>
+        <a href="services_endpoint-common.js.html">services/endpoint-common.js</a>, <a href="services_endpoint-common.js.html#line28">line 28</a>
     </li></ul></dd>
     
 
@@ -323,41 +208,11 @@ should extend BaseSvgScrapingService</p></div>
 
 
 
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
         
-<div class="param-desc">
-    <p>Matched value</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-    </dd>
-</dl>
-
     
 
-
-
-
+    
+        <h3 class="subsection-title">Methods</h3>
 
         
             
@@ -365,7 +220,7 @@ should extend BaseSvgScrapingService</p></div>
     
 
     
-    <h4 class="name" id="_requestSvg"><span class="type-signature">(async) </span>_requestSvg<span class="signature">(attrs)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="~fetchEndpointData"><span class="type-signature">(async, inner) </span>fetchEndpointData<span class="signature">(serviceInstance, attrs)</span><span class="type-signature"> &rarr; {object}</span></h4>
     
 
     
@@ -373,8 +228,7 @@ should extend BaseSvgScrapingService</p></div>
 
 
 <div class="description">
-    <p>Request data from an endpoint serving SVG,
-parse a value from it and validate against a schema</p>
+    <p>Fetches data from the endpoint and validates the data.</p>
 </div>
 
 
@@ -406,6 +260,29 @@ parse a value from it and validate against a schema</p>
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>serviceInstance</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Instance of Endpoint class</p></td>
+        </tr>
+
     
 
         <tr>
@@ -426,7 +303,7 @@ parse a value from it and validate against a schema</p>
 
             
 
-            <td class="description last"><p>Refer to individual attrs</p>
+            <td class="description last"><p>Refer to individual attributes</p>
                 <h6>Properties</h6>
                 
 
@@ -440,11 +317,7 @@ parse a value from it and validate against a schema</p>
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
-        
-        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -452,76 +325,6 @@ parse a value from it and validate against a schema</p>
     </thead>
 
     <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>schema</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Joi</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>Joi schema to validate the response against</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>valueMatcher</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">RegExp</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>RegExp to match the value we want to parse from the SVG</p></td>
-        </tr>
-
     
 
         <tr>
@@ -539,62 +342,10 @@ parse a value from it and validate against a schema</p>
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
-                <td class="default">
-                
-                </td>
-            
 
-            <td class="description last"><p>URL to request</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    {}
-                
-                </td>
-            
-
-            <td class="description last"><p>Options to pass to got. See
-<a href="https://github.com/sindresorhus/got/blob/main/documentation/2-options.md">documentation</a></p></td>
+            <td class="description last"><p>Endpoint URL</p></td>
         </tr>
 
     
@@ -614,29 +365,56 @@ parse a value from it and validate against a schema</p>
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
 
-                
+            
 
+            <td class="description last"><p>Object containing error messages for different error codes</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>validationPrettyErrorMessage</code></td>
+            
+
+            <td class="type">
+            
                 
-                </td>
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
             
 
             
-                <td class="default">
-                
-                    {}
-                
-                </td>
+
+            <td class="description last"><p>If provided then the error message is set to this value</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>includeKeys</code></td>
             
 
-            <td class="description last"><p>Key-value map of status codes
-and custom error messages e.g: <code>{ 404: 'package not found' }</code>.
-This can be used to extend or override the
-<a href="https://github.com/badges/shields/blob/master/core/base-service/check-error-response.js#L5">default</a></p></td>
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>If true then includes error details in error message</p></td>
         </tr>
 
     
@@ -684,19 +462,12 @@ This can be used to extend or override the
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_base-service_base-svg-scraping.js.html">core/base-service/base-svg-scraping.js</a>, <a href="core_base-service_base-svg-scraping.js.html#line63">line 63</a>
+        <a href="services_endpoint-common.js.html">services/endpoint-common.js</a>, <a href="services_endpoint-common.js.html#line90">line 90</a>
     </li></ul></dd>
     
 
     
 
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="https://github.com/sindresorhus/got/blob/main/documentation/2-options.md">https://github.com/sindresorhus/got/blob/main/documentation/2-options.md</a></li>
-        </ul>
-    </dd>
     
 
     
@@ -720,7 +491,317 @@ This can be used to extend or override the
 
         
 <div class="param-desc">
-    <p>Parsed response</p>
+    <p>Data fetched from endpoint</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~validateEndpointData"><span class="type-signature">(inner) </span>validateEndpointData<span class="signature">(data, attrs)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Strictly validate the data according to the endpoint schema.
+This rejects unknown/invalid keys.
+Optionally it prints those keys in the message to provide detailed feedback.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Object containing the data for validation</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>attrs</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Refer to individual attributes</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>prettyErrorMessage</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If provided then error message is set to this value</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>includeKeys</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If true then includes error details in error message, defaults to false</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_endpoint-common.js.html">services/endpoint-common.js</a>, <a href="services_endpoint-common.js.html#line59">line 59</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        <p>Error if Joi validation fails due to invalid or no schema</p>
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">InvalidResponse</span>
+|
+
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Value if Joi validation is success</p>
 </div>
 
 
